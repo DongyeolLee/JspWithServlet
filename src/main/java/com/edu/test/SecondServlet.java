@@ -1,6 +1,7 @@
 package com.edu.test;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,14 +22,20 @@ public class SecondServlet extends HttpServlet {
         System.out.println("Init() in Second Servlet method is called");
     }
 
-    @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        System.out.println("Service() in Second Servlet method is called");
-    }
+//    @Override
+//    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+//        System.out.println("Service() in Second Servlet method is called");
+//    }
 
     // service가 재정의 된 경우 호출되지 않음
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         System.out.println("doGet is called");
+
+        PrintWriter out = res.getWriter();
+        out.print("<html><head><title>Test</title></head>");
+        out.print("<body><h1>have a nice day!!</h1></body>");
+        out.print("</html>");
+        out.close();
     }
 }
